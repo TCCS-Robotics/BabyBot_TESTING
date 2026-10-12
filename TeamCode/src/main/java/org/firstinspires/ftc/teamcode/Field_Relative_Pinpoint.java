@@ -106,7 +106,7 @@ public class Field_Relative_Pinpoint extends OpMode {
             driveFieldRelative(-gamepad1.left_stick_y, gamepad1.left_stick_x, gamepad1.right_stick_x);
         }// Ends Drive If else statements
 
-    }//Closes TeleOp Look
+    }//Closes TeleOp Loop
 
 ////////////////////////////////// ENTER FUNCTIONS HERE//////////////////////////////////////
 
