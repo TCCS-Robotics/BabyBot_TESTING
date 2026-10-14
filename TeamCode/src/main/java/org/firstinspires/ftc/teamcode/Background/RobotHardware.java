@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.Background;
 
 import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
+import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -22,7 +23,9 @@ public class RobotHardware {
 
 
     //Sensors   FORMAT public Sensor Type name;
-    public GoBildaPinpointDriver odo;
+    public GoBildaPinpointDriver odo;  //Pinpoint for Field Centric
+    public Limelight3A limelight;  //Camera for April Tag Detection
+
 
     //Static Variables
 
@@ -43,8 +46,8 @@ public class RobotHardware {
 
 
         // Sensors
-        odo = hardwareMap.get(
-                GoBildaPinpointDriver.class, "odo");
+        odo = hardwareMap.get(GoBildaPinpointDriver.class, "odo");
+        limelight = hardwareMap.get(Limelight3A.class, "limelight");
 
         // Motor Directions
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
