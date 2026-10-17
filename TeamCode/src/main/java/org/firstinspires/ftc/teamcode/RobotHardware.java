@@ -1,9 +1,9 @@
-package org.firstinspires.ftc.teamcode.Background;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
-import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
@@ -17,6 +17,7 @@ public class RobotHardware {
     public DcMotor backRightDrive;
 
     //Mechanism Motors
+    public DcMotorEx flywheel;
 
 
     //Servos -  Format  - public Servo name; - or public CRServo name; -
@@ -40,7 +41,7 @@ public class RobotHardware {
         backRightDrive = hardwareMap.get(DcMotor.class, "motorBR");
 
         // Mechanism Motors
-
+        flywheel = hardwareMap.get(DcMotorEx.class,"flywheel");
 
         // Servos
 
@@ -52,9 +53,11 @@ public class RobotHardware {
         // Motor Directions
         frontLeftDrive.setDirection(DcMotor.Direction.REVERSE);
         backLeftDrive.setDirection(DcMotor.Direction.REVERSE);
-
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD);
         backRightDrive.setDirection(DcMotor.Direction.FORWARD);
+
+        //Mechanism Motor Directions
+        flywheel.setDirection(DcMotorSimple.Direction.FORWARD);
 
         // Brake Mode
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -62,11 +65,15 @@ public class RobotHardware {
         backLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         backRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         // Servo Directions
 
 
         // Launcher Configuration
+
+
 
 
         // Initialize Servos

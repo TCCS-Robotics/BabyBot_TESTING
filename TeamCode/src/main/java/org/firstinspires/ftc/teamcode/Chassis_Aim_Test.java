@@ -3,11 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
-import org.firstinspires.ftc.teamcode.Background.AprilTagTargeting;
-import org.firstinspires.ftc.teamcode.Background.MecanumDrive;
-import org.firstinspires.ftc.teamcode.Background.RobotHardware;
-
-@TeleOp(name = "BIOBUZZ Limelight Chassis Aim V2", group = "Vision")
+@TeleOp(name = "Limelight Chassis Aim Test", group = "Vision")
 public class Chassis_Aim_Test extends LinearOpMode {
     @Override public void runOpMode() {
         RobotHardware robot = new RobotHardware();
