@@ -1,7 +1,10 @@
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.Testing;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import org.firstinspires.ftc.teamcode.SharedClasses.MecanumDrive;
+import org.firstinspires.ftc.teamcode.SharedClasses.RobotHardware;
 
 
 @TeleOp(name = "April Tag Detection Test", group = "Robot")

@@ -1,21 +1,21 @@
-package org.firstinspires.ftc.teamcode;
-
-import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.normalizeRadians;
+package org.firstinspires.ftc.teamcode.Teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
+import org.firstinspires.ftc.teamcode.SharedClasses.MecanumDrive_Smooth;
+import org.firstinspires.ftc.teamcode.SharedClasses.RobotHardware;
 
 
-@TeleOp(name = "xBots TeleOp", group = "Robot")
+@TeleOp(name = "TeleOp", group = "Robot")
 //@Disabled
-public class Teleop extends OpMode {
+public class Teleop_Ramping extends OpMode {
     //Import Hardware Class & Mecanum Drive Class
     RobotHardware robot = new RobotHardware();
-    MecanumDrive drive;
+    MecanumDrive_Smooth drive;
 
-    //Variables
+    /////////////////////   Variables   /////////////////////
     private boolean previousResetButton = false;
 
 
@@ -24,7 +24,11 @@ public class Teleop extends OpMode {
     public void init() {
     //Initialize Hardware and Mecanum Drive Classes
         robot.init(hardwareMap);
-        drive = new MecanumDrive(robot);
+        drive = new MecanumDrive_Smooth(robot);
+    //Initialize Ramping value and acceleration values
+        drive.setRampingEnabled(true); // Set to False if you want to Disable Ramping
+        drive.setAccelerationRate(2.0);
+        drive.setDecelerationRate(8.0);
 
    }
 
