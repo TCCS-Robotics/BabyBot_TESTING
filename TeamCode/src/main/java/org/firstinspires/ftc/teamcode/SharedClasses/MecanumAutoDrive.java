@@ -57,6 +57,7 @@ public class MecanumAutoDrive {
         if (step == 0) { stop(); return true; }
 
         // Order: front left, front right, back left, back right.
+        //Based off motor directions set in Hardware class
         int[] signs;
         switch (direction) {
             case BACKWARD:     signs = new int[] {-1, -1, -1, -1}; break;

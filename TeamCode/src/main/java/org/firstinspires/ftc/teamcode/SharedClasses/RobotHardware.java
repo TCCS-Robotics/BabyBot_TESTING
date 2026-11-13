@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 
 
 public class RobotHardware {
@@ -18,7 +19,8 @@ public class RobotHardware {
     public DcMotor backRightDrive;
 
     //Mechanism Motors
-    public DcMotorEx launcher;
+    public DcMotorEx flywheel;
+    public DcMotor turret;
 
 
     //Servos -  Format  - public Servo name; - or public CRServo name; -
@@ -32,7 +34,9 @@ public class RobotHardware {
 
     ///////////////////     STATIC VARIABLES     ///////////////////////
     // goBILDA 1:1 motor Encoder Resolution at Output Shaft
-    public static final double LAUNCHER_TICKS_PER_REV = 28.0;
+    public static final double flywheel_TICKS_PER_REV = 28.0;
+    public static final int flywheel_TARGET_VELOCITY = 1250;
+    public static final int flywheel_MIN_VELOCITY = 1200;
 
 
     //////////////////////////    INITIALIZE ALL HARDWARE    /////////////////////////////
@@ -45,7 +49,8 @@ public class RobotHardware {
         backRightDrive = hardwareMap.get(DcMotor.class, "motorBR");
 
         // Mechanism Motors
-        launcher = hardwareMap.get(DcMotorEx.class,"launcher");
+        flywheel = hardwareMap.get(DcMotorEx.class,"flywheel");
+        turret = hardwareMap.get(DcMotorEx.class,"turret");
 
         // Servos
 
@@ -76,19 +81,27 @@ public class RobotHardware {
     ////////////////////       Servo Configurations        /////////////////////
 
 
-    ///////////////// Launcher Configuration/////////////////////////////
-        //Set Motor Direction
-        launcher.setDirection(DcMotorSimple.Direction.FORWARD);
+    ///////////////// Turret Configuration/////////////////////////////
+        // Turret: start stopped, brake when power is released.
+        // Encoder position is not reset here; add calibrated limits before full-speed use.
+        turret.setDirection(DcMotor.Direction.REVERSE); // NEED TO CHECK THIS MOTOR DIRECTION
+        turret.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        turret.setPower(0);
+
+    ///////////////// Flywheel Configuration/////////////////////////////
+        flywheel.setDirection(DcMotor.Direction.FORWARD); // NEED TO CHECK THIS MOTOR DIRECTION
 
         //Set Brake Behavior - This allows the flywheel to gradually slow down instead of immediately breaking
-        launcher.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+        flywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         // Encoder mode lets the motor controller regulate requested velocity.
         /////  NEEDED TO USE VELOCITY FEEDBACK /////
-        launcher.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        flywheel.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        flywheel.setPIDFCoefficients(DcMotor.RunMode.RUN_USING_ENCODER,
+                new PIDFCoefficients(40, 0, 0, 12.5));
 
-        // Sets the Launcher Starting Velocity to 0 so it starts stopped.
-        launcher.setVelocity(0);
+        // Sets the flywheel Starting Velocity to 0 so it starts stopped.
+        flywheel.setVelocity(0);
 
 
 

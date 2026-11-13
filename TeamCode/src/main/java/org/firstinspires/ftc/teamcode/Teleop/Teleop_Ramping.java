@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.SharedClasses.MecanumDrive_Smooth;
 import org.firstinspires.ftc.teamcode.SharedClasses.RobotHardware;
 
 
-@TeleOp(name = "TeleOp", group = "Robot")
+@TeleOp(name = "TeleOp_Ramping", group = "Robot")
 //@Disabled
 public class Teleop_Ramping extends OpMode {
     //Import Hardware Class & Mecanum Drive Class

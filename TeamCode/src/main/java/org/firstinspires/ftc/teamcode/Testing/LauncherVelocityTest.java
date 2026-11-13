@@ -114,14 +114,14 @@ public class LauncherVelocityTest extends OpMode {
 
         //Velocity Command
             // FTC setVelocity uses encoder ticks/second, not RPM. - This converts Ticks per second to RMP
-            double targetTPS = targetRPM * RobotHardware.LAUNCHER_TICKS_PER_REV / 60.0;
+            double targetTPS = targetRPM * RobotHardware.flywheel_TICKS_PER_REV / 60.0;
             double commandedRPM = launcherOn ? targetRPM : 0.0;
-            robot.launcher.setVelocity(launcherOn ? targetTPS : 0.0);
+            robot.flywheel.setVelocity(launcherOn ? targetTPS : 0.0);
 
         // Encoder Feedback ///////////////////////////
             // Read each loop so we can compare actual and requested speeds.
-            double actualTPS = robot.launcher.getVelocity();
-            double actualRPM = actualTPS * 60.0 / RobotHardware.LAUNCHER_TICKS_PER_REV;
+            double actualTPS = robot.flywheel.getVelocity();
+            double actualRPM = actualTPS * 60.0 / RobotHardware.flywheel_TICKS_PER_REV;
             double errorRPM = commandedRPM - actualRPM;
             // 'Ready' is a speed check, not confirmation a ball is present.
             boolean ready = launcherOn && commandedRPM > 0
@@ -154,7 +154,7 @@ public class LauncherVelocityTest extends OpMode {
     @Override
     public void stop() {
 
-        robot.launcher.setVelocity(0);
+        robot.flywheel.setVelocity(0);
     }
 
     //////////////////////// ENTER FUNCTIONS HERE ////////////////////////
